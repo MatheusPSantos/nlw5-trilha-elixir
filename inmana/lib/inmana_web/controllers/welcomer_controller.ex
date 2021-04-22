@@ -9,15 +9,13 @@ defmodule InmanaWeb.WelcomeController do
     |> handle_response(conn)
   end
 
-  defp handle_response({:ok, message}, conn) do
-    conn
-    |> put_status(:ok)
-    |> json(%{message: message})
-  end
+  defp handle_response({:ok, message}, conn), do: handle_response(conn, message, :ok)
 
-  defp handle_response({:error, message}, conn) do
+  defp handle_response({:error, message}, conn), do: handle_response(conn, message, :bad_request)
+
+  defp handle_response(conn, message, status) do
     conn
-    |> put_status(:bad_request)
+    |> put_status(status)
     |> json(%{message: message})
   end
 end
