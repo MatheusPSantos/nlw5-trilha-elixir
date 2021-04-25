@@ -6,6 +6,8 @@ defmodule Inmana.Supply do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
+  @foreign_key_type :binary_id
+
   @required_params [:description, :expiration_date, :responsible, :restaurant_id]
 
   @derive {Jason.Encoder, only: @required_params ++ [:id]}
@@ -16,6 +18,8 @@ defmodule Inmana.Supply do
     field :responsible, :string
 
     belongs_to :restaurant, Restaurant
+
+    timestamps()
   end
 
   def changeset(params) do
@@ -23,6 +27,6 @@ defmodule Inmana.Supply do
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:description, min: 3)
-    |> validate_format(:responsible, min: 3)
+    |> validate_length(:responsible, min: 3)
   end
 end
