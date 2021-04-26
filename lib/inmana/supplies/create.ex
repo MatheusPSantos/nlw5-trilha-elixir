@@ -1,5 +1,5 @@
 defmodule Inmana.Supplies.Create do
-  alias Inmana.{Repo, Restaurant, Supply}
+  alias Inmana.{Repo, Supply}
 
   def call(params) do
     params
