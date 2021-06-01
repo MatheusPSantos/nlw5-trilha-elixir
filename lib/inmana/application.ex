@@ -14,7 +14,8 @@ defmodule Inmana.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Inmana.PubSub},
       # Start the Endpoint (http/https)
-      InmanaWeb.Endpoint
+      InmanaWeb.Endpoint,
+      Inmana.Supplies.Scheduler
       # Start a worker by calling: Inmana.Worker.start_link(arg)
       # {Inmana.Worker, arg}
     ]
